@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+
+  .app {
+    background: rgba(0, 0, 0, 0.35);
+    padding: 25px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    text-align: center;
+  }
+
+  h2 {
+    margin-bottom: 15px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 12px;
+    border: none;
+    background: #1db954;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button:active {
+    transform: scale(0.97);
+  }
+
+  #output {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .chord {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+  }
+
+  .error {
+    grid-column: span 2;
+    color: #ffb3b3;
+    font-weight: bold;
+  }
+</style>
+<body>
+
+  <div class="app">
+    <h2>Scale to Chords Generator</h2>
+
+    <input id="scaleInput" placeholder="Ex: E major, D minor, F# major">
+
+    <button onclick="showChords()">Show Chords</button>
+
+    <div id="output"></div>
+  </div>
+
+</body>
+
+  <script>
+    function normalize(text) {
+      return text
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .replace("♯", "#")
+        .replace("♭", "b");
+    }
+
+    function showChords() {
+      const input = normalize(
+        document.getElementById("scaleInput").value
+      );
+      const output = document.getElementById("output");
+
+      const scales = {
+
+        // A
+        "amajor": ["A", "Bm", "C#m", "D", "E", "F#m", "G#dim"],
+        "aminor": ["Am", "Bdim", "C", "Dm", "Em", "F", "G"],
+        "a#major": ["A#", "Cm", "Dm", "D#", "F", "Gm", "Adim"],
+        "a#minor": ["A#m", "Cdim", "C#", "D#m", "Fm", "F#", "G#"],
+        "abmajor": ["Ab", "Bbm", "Cm", "Db", "Eb", "Fm", "Gdim"],
+
+        // B
+        "bmajor": ["B", "C#m", "D#m", "E", "F#", "G#m", "A#dim"],
+        "bminor": ["Bm", "C#dim", "D", "Em", "F#m", "G", "A"],
+        "bbmajor": ["Bb", "Cm", "Dm", "Eb", "F", "Gm", "Adim"],
+
+        // C
+        "cmajor": ["C", "Dm", "Em", "F", "G", "Am", "Bdim"],
+        "cminor": ["Cm", "Ddim", "Eb", "Fm", "Gm", "Ab", "Bb"],
+        "c#major": ["C#", "D#m", "E#m", "F#", "G#", "A#m", "B#dim"],
+        "c#minor": ["C#m", "D#dim", "E", "F#m", "G#m", "A", "B"],
+
+        // D
+        "dmajor": ["D", "Em", "F#m", "G", "A", "Bm", "C#dim"],
+        "dminor": ["Dm", "Edim", "F", "Gm", "Am", "Bb", "C"],
+        "d#major": ["D#", "E#m", "Fxm", "G#", "A#", "B#m", "C##dim"],
+        "d#minor": ["D#m", "E#dim", "F#", "G#m", "A#m", "B", "C#"],
+        "dbmajor": ["Db", "Ebm", "Fm", "Gb", "Ab", "Bbm", "Cdim"],
+
+        // E
+        "emajor": ["E", "F#m", "G#m", "A", "B", "C#m", "D#dim"],
+        "eminor": ["Em", "F#dim", "G", "Am", "Bm", "C", "D"],
+        "ebmajor": ["Eb", "Fm", "Gm", "Ab", "Bb", "Cm", "Ddim"],
+
+        // F
+        "fmajor": ["F", "Gm", "Am", "Bb", "C", "Dm", "Edim"],
+        "fminor": ["Fm", "Gdim", "Ab", "Bbm", "Cm", "Db", "Eb"],
+        "f#major": ["F#", "G#m", "A#m", "B", "C#", "D#m", "E#dim"],
+        "f#minor": ["F#m", "G#dim", "A", "Bm", "C#m", "D", "E"],
+
+        // G
+        "gmajor": ["G", "Am", "Bm", "C", "D", "Em", "F#dim"],
+        "gminor": ["Gm", "Adim", "Bb", "Cm", "Dm", "Eb", "F"],
+        "g#major": ["G#", "A#m", "B#m", "C#", "D#", "E#m", "F##dim"],
+        "g#minor": ["G#m", "A#dim", "B", "C#m", "D#m", "E", "F#"]
+      };
+
+      if (scales[input]) {
+        output.innerHTML = scales[input]
+  .map(chord => `<div class="chord">${chord}</div>`)
+  .join("");
+      } else {
+        output.innerHTML = `<div class="error">❌ Scale not found</div>`;
+      }
+    }
+  </script>
+
+</body>
+</html>
