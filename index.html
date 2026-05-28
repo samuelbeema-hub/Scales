@@ -1,143 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Scale Hub - Scale & Chord Finder</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Scale Hub - Complete Music Scale Finder</title>
 
 <style>
-  *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-  }
 
-  body{
-    min-height:100vh;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    color:white;
-  }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-  .app{
-    width:100%;
-    max-width:700px;
-    background:rgba(0,0,0,0.35);
-    border-radius:22px;
-    padding:25px;
-    backdrop-filter: blur(10px);
-    box-shadow:0 15px 40px rgba(0,0,0,0.5);
-  }
+body{
+  min-height:100vh;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  color:white;
+}
 
-  h1{
-    text-align:center;
-    margin-bottom:10px;
-    font-size:32px;
-  }
+.app{
+  width:100%;
+  max-width:850px;
+  background:rgba(0,0,0,0.35);
+  border-radius:22px;
+  padding:25px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 15px 40px rgba(0,0,0,0.5);
+}
 
-  .subtitle{
-    text-align:center;
-    color:#cfd8dc;
-    margin-bottom:25px;
-  }
+h1{
+  text-align:center;
+  margin-bottom:10px;
+  font-size:34px;
+}
 
-  .search-box{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-  }
+.subtitle{
+  text-align:center;
+  color:#cfd8dc;
+  margin-bottom:25px;
+}
 
-  input{
-    flex:1;
-    min-width:220px;
-    padding:14px;
-    border:none;
-    border-radius:12px;
-    font-size:16px;
-    outline:none;
-  }
+.search-box{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
-  button{
-    padding:14px 20px;
-    border:none;
-    border-radius:12px;
-    background:#1db954;
-    color:black;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.2s;
-  }
+input{
+  flex:1;
+  min-width:220px;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  font-size:16px;
+  outline:none;
+}
 
-  button:hover{
-    transform:translateY(-2px);
-  }
+button{
+  padding:14px 20px;
+  border:none;
+  border-radius:12px;
+  background:#1db954;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.2s;
+}
 
-  .section{
-    margin-top:25px;
-  }
+button:hover{
+  transform:translateY(-2px);
+}
 
-  .section h2{
-    margin-bottom:15px;
-    color:#1db954;
-  }
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:20px;
+  flex-wrap:wrap;
+  gap:10px;
+}
 
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-    gap:12px;
-  }
+.badge{
+  background:#1db954;
+  color:black;
+  padding:8px 14px;
+  border-radius:50px;
+  font-weight:bold;
+}
 
-  .card{
-    background:rgba(255,255,255,0.12);
-    padding:14px;
-    border-radius:12px;
-    text-align:center;
-    font-weight:bold;
-    transition:0.2s;
-  }
+.section{
+  margin-top:25px;
+}
 
-  .card:hover{
-    transform:scale(1.04);
-    background:rgba(255,255,255,0.18);
-  }
+.section h2{
+  margin-bottom:15px;
+  color:#1db954;
+}
 
-  .error{
-    background:#ff4d4d;
-    padding:14px;
-    border-radius:12px;
-    margin-top:20px;
-    text-align:center;
-    font-weight:bold;
-  }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:12px;
+}
 
-  .top-bar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:20px;
-    flex-wrap:wrap;
-    gap:10px;
-  }
+.card{
+  background:rgba(255,255,255,0.12);
+  padding:14px;
+  border-radius:12px;
+  text-align:center;
+  font-weight:bold;
+  transition:0.2s;
+}
 
-  .badge{
-    background:#1db954;
-    color:black;
-    padding:8px 14px;
-    border-radius:50px;
-    font-weight:bold;
-  }
+.card:hover{
+  transform:scale(1.05);
+  background:rgba(255,255,255,0.18);
+}
 
-  .footer{
-    text-align:center;
-    margin-top:30px;
-    color:#b0bec5;
-    font-size:14px;
-  }
+.error{
+  background:#ff4d4d;
+  padding:14px;
+  border-radius:12px;
+  margin-top:20px;
+  text-align:center;
+  font-weight:bold;
+}
+
+.footer{
+  text-align:center;
+  margin-top:30px;
+  color:#b0bec5;
+  font-size:14px;
+}
+
+.info{
+  margin-top:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+}
+
+.info-card{
+  background:rgba(255,255,255,0.1);
+  padding:15px;
+  border-radius:14px;
+}
+
+.info-card span{
+  color:#1db954;
+  font-weight:bold;
+}
 
 </style>
 </head>
@@ -146,38 +166,43 @@
 
 <div class="app">
 
-  <h1>🎸 Scale Hub</h1>
-  <p class="subtitle">
-    Find Major, Minor & Pentatonic Scale Chords Instantly
-  </p>
+<h1>🎸 Scale Hub</h1>
 
-  <div class="search-box">
-    <input 
-      type="text"
-      id="scaleInput"
-      placeholder="Example: E major, A minor, F# major"
-    />
+<p class="subtitle">
+Complete Major, Minor & Pentatonic Scale Finder
+</p>
 
-    <button onclick="showScale()">
-      Show Scale
-    </button>
-  </div>
+<div class="search-box">
 
-  <div class="top-bar">
-    <div class="badge" id="scaleType">
-      Ready
-    </div>
+<input 
+type="text"
+id="scaleInput"
+placeholder="Example: E major, Bb minor, F# major"
+/>
 
-    <button onclick="randomScale()">
-      🎲 Random Scale
-    </button>
-  </div>
+<button onclick="showScale()">
+Show Scale
+</button>
 
-  <div id="result"></div>
+</div>
 
-  <div class="footer">
-    Scale Hub • Built for Musicians 🎶
-  </div>
+<div class="top-bar">
+
+<div class="badge" id="scaleType">
+Ready
+</div>
+
+<button onclick="randomScale()">
+🎲 Random Scale
+</button>
+
+</div>
+
+<div id="result"></div>
+
+<div class="footer">
+Scale Hub • Built for Musicians 🎶
+</div>
 
 </div>
 
@@ -193,100 +218,270 @@ function normalize(text){
 
 const scales = {
 
-  // ===== MAJOR =====
+"cmajor":{
+notes:["C","D","E","F","G","A","B"],
+chords:["C","Dm","Em","F","G","Am","Bdim"],
+pentatonic:["C","D","E","G","A"],
+relative:"A minor",
+mood:"Happy / Bright"
+},
 
-  "cmajor":{
-    chords:["C","Dm","Em","F","G","Am","Bdim"],
-    pentatonic:["C","D","E","G","A"],
-    notes:["C","D","E","F","G","A","B"],
-    mood:"Happy / Bright"
-  },
+"cminor":{
+notes:["C","D","Eb","F","G","Ab","Bb"],
+chords:["Cm","Ddim","Eb","Fm","Gm","Ab","Bb"],
+pentatonic:["C","Eb","F","G","Bb"],
+relative:"Eb major",
+mood:"Dark / Emotional"
+},
 
-  "dmajor":{
-    chords:["D","Em","F#m","G","A","Bm","C#dim"],
-    pentatonic:["D","E","F#","A","B"],
-    notes:["D","E","F#","G","A","B","C#"],
-    mood:"Powerful"
-  },
+"c#major":{
+notes:["C#","D#","E#","F#","G#","A#","B#"],
+chords:["C#","D#m","E#m","F#","G#","A#m","B#dim"],
+pentatonic:["C#","D#","F","G#","A#"],
+relative:"A# minor",
+mood:"Bright"
+},
 
-  "emajor":{
-    chords:["E","F#m","G#m","A","B","C#m","D#dim"],
-    pentatonic:["E","F#","G#","B","C#"],
-    notes:["E","F#","G#","A","B","C#","D#"],
-    mood:"Energetic"
-  },
+"c#minor":{
+notes:["C#","D#","E","F#","G#","A","B"],
+chords:["C#m","D#dim","E","F#m","G#m","A","B"],
+pentatonic:["C#","E","F#","G#","B"],
+relative:"E major",
+mood:"Emotional"
+},
 
-  "fmajor":{
-    chords:["F","Gm","Am","Bb","C","Dm","Edim"],
-    pentatonic:["F","G","A","C","D"],
-    notes:["F","G","A","Bb","C","D","E"],
-    mood:"Warm"
-  },
+"dmajor":{
+notes:["D","E","F#","G","A","B","C#"],
+chords:["D","Em","F#m","G","A","Bm","C#dim"],
+pentatonic:["D","E","F#","A","B"],
+relative:"B minor",
+mood:"Powerful"
+},
 
-  "gmajor":{
-    chords:["G","Am","Bm","C","D","Em","F#dim"],
-    pentatonic:["G","A","B","D","E"],
-    notes:["G","A","B","C","D","E","F#"],
-    mood:"Uplifting"
-  },
+"dminor":{
+notes:["D","E","F","G","A","Bb","C"],
+chords:["Dm","Edim","F","Gm","Am","Bb","C"],
+pentatonic:["D","F","G","A","C"],
+relative:"F major",
+mood:"Sad"
+},
 
-  "amajor":{
-    chords:["A","Bm","C#m","D","E","F#m","G#dim"],
-    pentatonic:["A","B","C#","E","F#"],
-    notes:["A","B","C#","D","E","F#","G#"],
-    mood:"Joyful"
-  },
+"d#major":{
+notes:["D#","E#","F##","G#","A#","B#","C##"],
+chords:["D#","E#m","F##m","G#","A#","B#m","C##dim"],
+pentatonic:["D#","F","G","A#","C"],
+relative:"C minor",
+mood:"Strong"
+},
 
-  "bmajor":{
-    chords:["B","C#m","D#m","E","F#","G#m","A#dim"],
-    pentatonic:["B","C#","D#","F#","G#"],
-    notes:["B","C#","D#","E","F#","G#","A#"],
-    mood:"Strong"
-  },
+"d#minor":{
+notes:["D#","E#","F#","G#","A#","B","C#"],
+chords:["D#m","E#dim","F#","G#m","A#m","B","C#"],
+pentatonic:["D#","F#","G#","A#","C#"],
+relative:"F# major",
+mood:"Heavy"
+},
 
-  // ===== MINOR =====
+"ebmajor":{
+notes:["Eb","F","G","Ab","Bb","C","D"],
+chords:["Eb","Fm","Gm","Ab","Bb","Cm","Ddim"],
+pentatonic:["Eb","F","G","Bb","C"],
+relative:"C minor",
+mood:"Soulful"
+},
 
-  "aminor":{
-    chords:["Am","Bdim","C","Dm","Em","F","G"],
-    pentatonic:["A","C","D","E","G"],
-    notes:["A","B","C","D","E","F","G"],
-    mood:"Sad / Emotional"
-  },
+"ebminor":{
+notes:["Eb","F","Gb","Ab","Bb","Cb","Db"],
+chords:["Ebm","Fdim","Gb","Abm","Bbm","Cb","Db"],
+pentatonic:["Eb","Gb","Ab","Bb","Db"],
+relative:"Gb major",
+mood:"Dark"
+},
 
-  "eminor":{
-    chords:["Em","F#dim","G","Am","Bm","C","D"],
-    pentatonic:["E","G","A","B","D"],
-    notes:["E","F#","G","A","B","C","D"],
-    mood:"Deep"
-  },
+"emajor":{
+notes:["E","F#","G#","A","B","C#","D#"],
+chords:["E","F#m","G#m","A","B","C#m","D#dim"],
+pentatonic:["E","F#","G#","B","C#"],
+relative:"C# minor",
+mood:"Energetic"
+},
 
-  "dminor":{
-    chords:["Dm","Edim","F","Gm","Am","Bb","C"],
-    pentatonic:["D","F","G","A","C"],
-    notes:["D","E","F","G","A","Bb","C"],
-    mood:"Melancholic"
-  },
+"eminor":{
+notes:["E","F#","G","A","B","C","D"],
+chords:["Em","F#dim","G","Am","Bm","C","D"],
+pentatonic:["E","G","A","B","D"],
+relative:"G major",
+mood:"Deep"
+},
 
-  "gminor":{
-    chords:["Gm","Adim","Bb","Cm","Dm","Eb","F"],
-    pentatonic:["G","Bb","C","D","F"],
-    notes:["G","A","Bb","C","D","Eb","F"],
-    mood:"Dark"
-  },
+"fmajor":{
+notes:["F","G","A","Bb","C","D","E"],
+chords:["F","Gm","Am","Bb","C","Dm","Edim"],
+pentatonic:["F","G","A","C","D"],
+relative:"D minor",
+mood:"Warm"
+},
 
-  "cminor":{
-    chords:["Cm","Ddim","Eb","Fm","Gm","Ab","Bb"],
-    pentatonic:["C","Eb","F","G","Bb"],
-    notes:["C","D","Eb","F","G","Ab","Bb"],
-    mood:"Cinematic"
-  },
+"fminor":{
+notes:["F","G","Ab","Bb","C","Db","Eb"],
+chords:["Fm","Gdim","Ab","Bbm","Cm","Db","Eb"],
+pentatonic:["F","Ab","Bb","C","Eb"],
+relative:"Ab major",
+mood:"Emotional"
+},
 
-  "f#minor":{
-    chords:["F#m","G#dim","A","Bm","C#m","D","E"],
-    pentatonic:["F#","A","B","C#","E"],
-    notes:["F#","G#","A","B","C#","D","E"],
-    mood:"Modern"
-  }
+"f#major":{
+notes:["F#","G#","A#","B","C#","D#","E#"],
+chords:["F#","G#m","A#m","B","C#","D#m","E#dim"],
+pentatonic:["F#","G#","A#","C#","D#"],
+relative:"D# minor",
+mood:"Strong"
+},
+
+"f#minor":{
+notes:["F#","G#","A","B","C#","D","E"],
+chords:["F#m","G#dim","A","Bm","C#m","D","E"],
+pentatonic:["F#","A","B","C#","E"],
+relative:"A major",
+mood:"Modern"
+},
+
+"gmajor":{
+notes:["G","A","B","C","D","E","F#"],
+chords:["G","Am","Bm","C","D","Em","F#dim"],
+pentatonic:["G","A","B","D","E"],
+relative:"E minor",
+mood:"Uplifting"
+},
+
+"gminor":{
+notes:["G","A","Bb","C","D","Eb","F"],
+chords:["Gm","Adim","Bb","Cm","Dm","Eb","F"],
+pentatonic:["G","Bb","C","D","F"],
+relative:"Bb major",
+mood:"Dark"
+},
+
+"g#major":{
+notes:["G#","A#","B#","C#","D#","E#","F##"],
+chords:["G#","A#m","B#m","C#","D#","E#m","F##dim"],
+pentatonic:["G#","A#","C","D#","F"],
+relative:"F minor",
+mood:"Dreamy"
+},
+
+"g#minor":{
+notes:["G#","A#","B","C#","D#","E","F#"],
+chords:["G#m","A#dim","B","C#m","D#m","E","F#"],
+pentatonic:["G#","B","C#","D#","F#"],
+relative:"B major",
+mood:"Deep"
+},
+
+"amajor":{
+notes:["A","B","C#","D","E","F#","G#"],
+chords:["A","Bm","C#m","D","E","F#m","G#dim"],
+pentatonic:["A","B","C#","E","F#"],
+relative:"F# minor",
+mood:"Joyful"
+},
+
+"aminor":{
+notes:["A","B","C","D","E","F","G"],
+chords:["Am","Bdim","C","Dm","Em","F","G"],
+pentatonic:["A","C","D","E","G"],
+relative:"C major",
+mood:"Sad / Emotional"
+},
+
+"a#major":{
+notes:["A#","C","D","D#","F","G","A"],
+chords:["A#","Cm","Dm","D#","F","Gm","Adim"],
+pentatonic:["A#","C","D","F","G"],
+relative:"G minor",
+mood:"Warm"
+},
+
+"a#minor":{
+notes:["A#","C","C#","D#","F","F#","G#"],
+chords:["A#m","Cdim","C#","D#m","Fm","F#","G#"],
+pentatonic:["A#","C#","D#","F","G#"],
+relative:"C# major",
+mood:"Heavy"
+},
+
+"abmajor":{
+notes:["Ab","Bb","C","Db","Eb","F","G"],
+chords:["Ab","Bbm","Cm","Db","Eb","Fm","Gdim"],
+pentatonic:["Ab","Bb","C","Eb","F"],
+relative:"F minor",
+mood:"Rich"
+},
+
+"abminor":{
+notes:["Ab","Bb","Cb","Db","Eb","Fb","Gb"],
+chords:["Abm","Bbdim","Cb","Dbm","Ebm","Fb","Gb"],
+pentatonic:["Ab","Cb","Db","Eb","Gb"],
+relative:"Cb major",
+mood:"Atmospheric"
+},
+
+"bmajor":{
+notes:["B","C#","D#","E","F#","G#","A#"],
+chords:["B","C#m","D#m","E","F#","G#m","A#dim"],
+pentatonic:["B","C#","D#","F#","G#"],
+relative:"G# minor",
+mood:"Strong"
+},
+
+"bminor":{
+notes:["B","C#","D","E","F#","G","A"],
+chords:["Bm","C#dim","D","Em","F#m","G","A"],
+pentatonic:["B","D","E","F#","A"],
+relative:"D major",
+mood:"Reflective"
+},
+
+"bbmajor":{
+notes:["Bb","C","D","Eb","F","G","A"],
+chords:["Bb","Cm","Dm","Eb","F","Gm","Adim"],
+pentatonic:["Bb","C","D","F","G"],
+relative:"G minor",
+mood:"Smooth"
+},
+
+"bbminor":{
+notes:["Bb","C","Db","Eb","F","Gb","Ab"],
+chords:["Bbm","Cdim","Db","Ebm","Fm","Gb","Ab"],
+pentatonic:["Bb","Db","Eb","F","Ab"],
+relative:"Db major",
+mood:"Sad"
+},
+
+"dbmajor":{
+notes:["Db","Eb","F","Gb","Ab","Bb","C"],
+chords:["Db","Ebm","Fm","Gb","Ab","Bbm","Cdim"],
+pentatonic:["Db","Eb","F","Ab","Bb"],
+relative:"Bb minor",
+mood:"Calm"
+},
+
+"dbminor":{
+notes:["Db","Eb","Fb","Gb","Ab","Bbb","Cb"],
+chords:["Dbm","Ebdim","Fb","Gbm","Abm","Bbb","Cb"],
+pentatonic:["Db","Fb","Gb","Ab","Cb"],
+relative:"Fb major",
+mood:"Atmospheric"
+},
+
+"gbmajor":{
+notes:["Gb","Ab","Bb","Cb","Db","Eb","F"],
+chords:["Gb","Abm","Bbm","Cb","Db","Ebm","Fdim"],
+pentatonic:["Gb","Ab","Bb","Db","Eb"],
+relative:"Eb minor",
+mood:"Soft"
+}
+
 };
 
 function createCards(arr){
@@ -308,12 +503,28 @@ function showScale(){
 
     const data = scales[input];
 
-    scaleType.innerHTML = `🎵 ${input.toUpperCase()}`;
+    scaleType.innerHTML =
+      `🎵 ${input.toUpperCase()}`;
 
     result.innerHTML = `
 
+      <div class="info">
+
+        <div class="info-card">
+          <span>Relative Scale</span><br>
+          ${data.relative}
+        </div>
+
+        <div class="info-card">
+          <span>Mood</span><br>
+          ${data.mood}
+        </div>
+
+      </div>
+
       <div class="section">
         <h2>🎼 Scale Notes</h2>
+
         <div class="grid">
           ${createCards(data.notes)}
         </div>
@@ -321,6 +532,7 @@ function showScale(){
 
       <div class="section">
         <h2>🎹 Chords in Scale</h2>
+
         <div class="grid">
           ${createCards(data.chords)}
         </div>
@@ -328,15 +540,9 @@ function showScale(){
 
       <div class="section">
         <h2>🔥 Pentatonic Scale</h2>
+
         <div class="grid">
           ${createCards(data.pentatonic)}
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>🎧 Mood</h2>
-        <div class="card">
-          ${data.mood}
         </div>
       </div>
 
@@ -348,11 +554,13 @@ function showScale(){
 
     result.innerHTML = `
       <div class="error">
-        Scale not found. Try:
-        <br><br>
+        Scale not found.<br><br>
+
+        Try:<br>
         E major<br>
-        A minor<br>
-        G major
+        Bb minor<br>
+        F# major<br>
+        Ab major
       </div>
     `;
   }
@@ -363,7 +571,7 @@ function randomScale(){
   const keys = Object.keys(scales);
 
   const random =
-    keys[Math.floor(Math.random() * keys.length)];
+    keys[Math.floor(Math.random()*keys.length)];
 
   document.getElementById("scaleInput").value =
     random.replace("major"," major")
