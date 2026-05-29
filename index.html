@@ -5,7 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Chordzilla - Complete Music Scale Finder</title>
+<title>Chordzilla - Ultimate Music Scale Finder</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,146 +19,300 @@
 
 body{
   min-height:100vh;
-  font-family:Arial, sans-serif;
-  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  font-family:'Poppins',sans-serif;
+
+  background:
+
+  linear-gradient(
+    rgba(5,5,15,0.78),
+    rgba(5,5,15,0.88)
+  ),
+
+  url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1974&auto=format&fit=crop');
+
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+
   display:flex;
   justify-content:center;
   align-items:center;
   padding:20px;
   color:white;
+
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* Floating Music Elements */
+
+body::before{
+  content:"♫ ♪ ♬ ♩ ♫ ♪";
+
+  position:fixed;
+  top:5%;
+  left:5%;
+
+  font-size:90px;
+
+  color:rgba(255,255,255,0.06);
+
+  transform:rotate(-15deg);
+
+  animation:floatMusic 8s ease-in-out infinite;
+}
+
+body::after{
+  content:"🎸 🎹 🎵";
+
+  position:fixed;
+  bottom:5%;
+  right:5%;
+
+  font-size:70px;
+
+  opacity:0.12;
+
+  animation:floatMusic2 10s ease-in-out infinite;
+}
+
+@keyframes floatMusic{
+
+  0%{
+    transform:translateY(0px) rotate(-15deg);
+  }
+
+  50%{
+    transform:translateY(-20px) rotate(-10deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(-15deg);
+  }
+}
+
+@keyframes floatMusic2{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-15px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
 }
 
 .app{
   width:100%;
-  max-width:850px;
-  background:rgba(0,0,0,0.35);
-  border-radius:22px;
-  padding:25px;
-  backdrop-filter:blur(10px);
-  box-shadow:0 15px 40px rgba(0,0,0,0.5);
+  max-width:950px;
+
+  background:rgba(10,10,20,0.72);
+
+  border:1px solid rgba(255,255,255,0.12);
+
+  backdrop-filter:blur(18px);
+
+  border-radius:30px;
+
+  padding:30px;
+
+  box-shadow:
+  0 0 50px rgba(0,229,255,0.15),
+  0 0 100px rgba(255,0,128,0.10);
+
+  z-index:2;
+}
+
+.logo{
+  text-align:center;
+  font-size:52px;
+  margin-bottom:10px;
 }
 
 h1{
   text-align:center;
+  font-size:42px;
   margin-bottom:10px;
-  font-size:34px;
+
+  background:linear-gradient(
+    90deg,
+    #00e5ff,
+    #ff4fd8,
+    #ffd600
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .subtitle{
   text-align:center;
-  color:#cfd8dc;
-  margin-bottom:25px;
+  color:#d0d0d0;
+  margin-bottom:28px;
+  font-size:17px;
 }
 
 .search-box{
   display:flex;
-  gap:10px;
+  gap:12px;
   flex-wrap:wrap;
 }
 
 input{
   flex:1;
-  min-width:220px;
-  padding:14px;
+  min-width:230px;
+  padding:16px;
   border:none;
-  border-radius:12px;
-  font-size:16px;
+  border-radius:16px;
   outline:none;
+  font-size:16px;
+  background:rgba(255,255,255,0.12);
+  color:white;
+}
+
+input::placeholder{
+  color:#d0d0d0;
 }
 
 button{
-  padding:14px 20px;
+  padding:16px 24px;
   border:none;
-  border-radius:12px;
-  background:#1db954;
-  color:black;
-  font-weight:bold;
+  border-radius:16px;
+
+  background:linear-gradient(
+    135deg,
+    #00e5ff,
+    #ff4fd8
+  );
+
+  color:white;
+  font-weight:600;
   cursor:pointer;
-  transition:0.2s;
+  transition:0.25s;
 }
 
 button:hover{
-  transform:translateY(-2px);
+  transform:translateY(-3px) scale(1.03);
 }
 
 .top-bar{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-top:20px;
-  flex-wrap:wrap;
+  margin-top:22px;
   gap:10px;
+  flex-wrap:wrap;
 }
 
 .badge{
-  background:#1db954;
-  color:black;
-  padding:8px 14px;
+  padding:10px 18px;
   border-radius:50px;
-  font-weight:bold;
+
+  background:linear-gradient(
+    135deg,
+    #ffd600,
+    #ff4fd8
+  );
+
+  color:black;
+  font-weight:700;
 }
 
 .section{
-  margin-top:25px;
+  margin-top:28px;
 }
 
 .section h2{
-  margin-bottom:15px;
-  color:#1db954;
+  margin-bottom:16px;
+  font-size:24px;
+  color:#00e5ff;
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:12px;
+  gap:14px;
 }
 
 .card{
-  background:rgba(255,255,255,0.12);
-  padding:14px;
-  border-radius:12px;
+  background:rgba(255,255,255,0.10);
+  padding:16px;
+  border-radius:18px;
   text-align:center;
-  font-weight:bold;
-  transition:0.2s;
+  font-weight:600;
+  transition:0.25s;
 }
 
 .card:hover{
-  transform:scale(1.05);
-  background:rgba(255,255,255,0.18);
+  transform:translateY(-5px) scale(1.04);
+
+  background:linear-gradient(
+    135deg,
+    rgba(0,229,255,0.25),
+    rgba(255,79,216,0.25)
+  );
+}
+
+.info{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+
+.info-card{
+  background:rgba(255,255,255,0.08);
+  padding:18px;
+  border-radius:18px;
+}
+
+.info-card span{
+  color:#ffd600;
+  font-weight:700;
 }
 
 .error{
-  background:#ff4d4d;
-  padding:14px;
-  border-radius:12px;
-  margin-top:20px;
+  margin-top:25px;
+  background:rgba(255,0,0,0.18);
+  padding:18px;
+  border-radius:18px;
   text-align:center;
-  font-weight:bold;
+  font-weight:600;
 }
 
 .footer{
   text-align:center;
-  margin-top:30px;
-  color:#b0bec5;
+  margin-top:35px;
+  color:#d0d0d0;
   font-size:14px;
 }
 
-.info{
-  margin-top:15px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:12px;
+.footer span{
+  color:#ff4fd8;
+  font-weight:600;
 }
 
-.info-card{
-  background:rgba(255,255,255,0.1);
-  padding:15px;
-  border-radius:14px;
-}
+@media(max-width:768px){
 
-.info-card span{
-  color:#1db954;
-  font-weight:bold;
+  h1{
+    font-size:32px;
+  }
+
+  .logo{
+    font-size:42px;
+  }
+
+  .search-box{
+    flex-direction:column;
+  }
+
+  button{
+    width:100%;
+  }
 }
 
 </style>
@@ -166,22 +322,24 @@ button:hover{
 
 <div class="app">
 
-<h1>🎸 Chordzilla</h1>
+<div class="logo">🎸🔥</div>
+
+<h1>Chordzilla</h1>
 
 <p class="subtitle">
-Complete Major, Minor & Pentatonic Scale Finder
+Ultimate Major • Minor • Pentatonic • Sharp • Flat Scale Finder
 </p>
 
 <div class="search-box">
 
-<input 
+<input
 type="text"
 id="scaleInput"
-placeholder="Example: E major, Bb minor, F# major"
+placeholder="Try: F# major, Bb minor, Gb minor"
 />
 
 <button onclick="showScale()">
-Show Scale
+🎵 Find Scale
 </button>
 
 </div>
@@ -189,7 +347,7 @@ Show Scale
 <div class="top-bar">
 
 <div class="badge" id="scaleType">
-Ready
+READY
 </div>
 
 <button onclick="randomScale()">
@@ -201,7 +359,7 @@ Ready
 <div id="result"></div>
 
 <div class="footer">
-Chordzilla • Built for Musicians 🎶
+<span>Chordzilla</span> • Built for Musicians 🎶
 </div>
 
 </div>
@@ -264,6 +422,22 @@ chords:["Dm","Edim","F","Gm","Am","Bb","C"],
 pentatonic:["D","F","G","A","C"],
 relative:"F major",
 mood:"Sad"
+},
+
+"d#major":{
+notes:["D#","E#","F##","G#","A#","B#","C##"],
+chords:["D#","E#m","F##m","G#","A#","B#m","C##dim"],
+pentatonic:["D#","F","G","A#","C"],
+relative:"C minor",
+mood:"Strong"
+},
+
+"d#minor":{
+notes:["D#","E#","F#","G#","A#","B","C#"],
+chords:["D#m","E#dim","F#","G#m","A#m","B","C#"],
+pentatonic:["D#","F#","G#","A#","C#"],
+relative:"F# major",
+mood:"Heavy"
 },
 
 "ebmajor":{
@@ -330,6 +504,22 @@ relative:"A major",
 mood:"Modern"
 },
 
+"fbmajor":{
+notes:["Fb","Gb","Ab","Bbb","Cb","Db","Eb"],
+chords:["Fb","Gbm","Abm","Bbb","Cb","Dbm","Ebdim"],
+pentatonic:["Fb","Gb","Ab","Cb","Db"],
+relative:"Db minor",
+mood:"Dreamy"
+},
+
+"fbminor":{
+notes:["Fb","Gb","Abb","Bbb","Cb","Dbb","Ebb"],
+chords:["Fbm","Gbdim","Abb","Bbbm","Cbm","Dbb","Ebb"],
+pentatonic:["Fb","Abb","Bbb","Cb","Ebb"],
+relative:"Abb major",
+mood:"Atmospheric"
+},
+
 "gmajor":{
 notes:["G","A","B","C","D","E","F#"],
 chords:["G","Am","Bm","C","D","Em","F#dim"],
@@ -346,12 +536,60 @@ relative:"Bb major",
 mood:"Dark"
 },
 
+"g#major":{
+notes:["G#","A#","B#","C#","D#","E#","F##"],
+chords:["G#","A#m","B#m","C#","D#","E#m","F##dim"],
+pentatonic:["G#","A#","C","D#","F"],
+relative:"F minor",
+mood:"Dreamy"
+},
+
+"g#minor":{
+notes:["G#","A#","B","C#","D#","E","F#"],
+chords:["G#m","A#dim","B","C#m","D#m","E","F#"],
+pentatonic:["G#","B","C#","D#","F#"],
+relative:"B major",
+mood:"Deep"
+},
+
+"gbmajor":{
+notes:["Gb","Ab","Bb","Cb","Db","Eb","F"],
+chords:["Gb","Abm","Bbm","Cb","Db","Ebm","Fdim"],
+pentatonic:["Gb","Ab","Bb","Db","Eb"],
+relative:"Eb minor",
+mood:"Soft"
+},
+
+"gbminor":{
+notes:["Gb","Ab","Bbb","Cb","Db","Ebb","Fb"],
+chords:["Gbm","Abdim","Bbb","Cbm","Dbm","Ebb","Fb"],
+pentatonic:["Gb","Bbb","Cb","Db","Fb"],
+relative:"Bbb major",
+mood:"Dark / Ambient"
+},
+
 "abmajor":{
 notes:["Ab","Bb","C","Db","Eb","F","G"],
 chords:["Ab","Bbm","Cm","Db","Eb","Fm","Gdim"],
 pentatonic:["Ab","Bb","C","Eb","F"],
 relative:"F minor",
 mood:"Rich"
+},
+
+"abminor":{
+notes:["Ab","Bb","Cb","Db","Eb","Fb","Gb"],
+chords:["Abm","Bbdim","Cb","Dbm","Ebm","Fb","Gb"],
+pentatonic:["Ab","Cb","Db","Eb","Gb"],
+relative:"Cb major",
+mood:"Atmospheric"
+},
+
+"amajor":{
+notes:["A","B","C#","D","E","F#","G#"],
+chords:["A","Bm","C#m","D","E","F#m","G#dim"],
+pentatonic:["A","B","C#","E","F#"],
+relative:"F# minor",
+mood:"Joyful"
 },
 
 "aminor":{
@@ -362,12 +600,36 @@ relative:"C major",
 mood:"Sad / Emotional"
 },
 
-"amajor":{
-notes:["A","B","C#","D","E","F#","G#"],
-chords:["A","Bm","C#m","D","E","F#m","G#dim"],
-pentatonic:["A","B","C#","E","F#"],
-relative:"F# minor",
-mood:"Joyful"
+"a#major":{
+notes:["A#","C","D","D#","F","G","A"],
+chords:["A#","Cm","Dm","D#","F","Gm","Adim"],
+pentatonic:["A#","C","D","F","G"],
+relative:"G minor",
+mood:"Warm"
+},
+
+"a#minor":{
+notes:["A#","C","C#","D#","F","F#","G#"],
+chords:["A#m","Cdim","C#","D#m","Fm","F#","G#"],
+pentatonic:["A#","C#","D#","F","G#"],
+relative:"C# major",
+mood:"Heavy"
+},
+
+"bmajor":{
+notes:["B","C#","D#","E","F#","G#","A#"],
+chords:["B","C#m","D#m","E","F#","G#m","A#dim"],
+pentatonic:["B","C#","D#","F#","G#"],
+relative:"G# minor",
+mood:"Strong"
+},
+
+"bminor":{
+notes:["B","C#","D","E","F#","G","A"],
+chords:["Bm","C#dim","D","Em","F#m","G","A"],
+pentatonic:["B","D","E","F#","A"],
+relative:"D major",
+mood:"Reflective"
 },
 
 "bbmajor":{
@@ -386,118 +648,135 @@ relative:"Db major",
 mood:"Sad"
 },
 
-"bmajor":{
-notes:["B","C#","D#","E","F#","G#","A#"],
-chords:["B","C#m","D#m","E","F#","G#m","A#dim"],
-pentatonic:["B","C#","D#","F#","G#"],
-relative:"G# minor",
-mood:"Strong"
+"cbmajor":{
+notes:["Cb","Db","Eb","Fb","Gb","Ab","Bb"],
+chords:["Cb","Dbm","Ebm","Fb","Gb","Abm","Bbdim"],
+pentatonic:["Cb","Db","Eb","Gb","Ab"],
+relative:"Ab minor",
+mood:"Smooth / Calm"
 },
 
-"bminor":{
-notes:["B","C#","D","E","F#","G","A"],
-chords:["Bm","C#dim","D","Em","F#m","G","A"],
-pentatonic:["B","D","E","F#","A"],
-relative:"D major",
-mood:"Reflective"
+"cbminor":{
+notes:["Cb","Db","Ebb","Fb","Gb","Abb","Bbb"],
+chords:["Cbm","Dbdim","Ebb","Fbm","Gbm","Abb","Bbb"],
+pentatonic:["Cb","Ebb","Fb","Gb","Bbb"],
+relative:"Ebb major",
+mood:"Dark"
+},
+
+"dbmajor":{
+notes:["Db","Eb","F","Gb","Ab","Bb","C"],
+chords:["Db","Ebm","Fm","Gb","Ab","Bbm","Cdim"],
+pentatonic:["Db","Eb","F","Ab","Bb"],
+relative:"Bb minor",
+mood:"Calm"
+},
+
+"dbminor":{
+notes:["Db","Eb","Fb","Gb","Ab","Bbb","Cb"],
+chords:["Dbm","Ebdim","Fb","Gbm","Abm","Bbb","Cb"],
+pentatonic:["Db","Fb","Gb","Ab","Cb"],
+relative:"Fb major",
+mood:"Atmospheric"
 }
 
 };
 
 function createCards(arr){
-  return arr.map(item => `
-    <div class="card">${item}</div>
+  return arr.map(item=>`
+  <div class="card">${item}</div>
   `).join("");
 }
 
 function showScale(){
 
-  const input = normalize(
-    document.getElementById("scaleInput").value
-  );
+const input=normalize(
+document.getElementById("scaleInput").value
+);
 
-  const result = document.getElementById("result");
-  const scaleType = document.getElementById("scaleType");
+const result=document.getElementById("result");
+const scaleType=document.getElementById("scaleType");
 
-  if(scales[input]){
+if(scales[input]){
 
-    const data = scales[input];
+const data=scales[input];
 
-    scaleType.innerHTML =
-      `🎵 ${input.toUpperCase()}`;
+scaleType.innerHTML=`🎵 ${input.toUpperCase()}`;
 
-    result.innerHTML = `
+result.innerHTML=`
 
-      <div class="info">
+<div class="info">
 
-        <div class="info-card">
-          <span>Relative Scale</span><br>
-          ${data.relative}
-        </div>
+<div class="info-card">
+<span>Relative Scale</span><br>
+${data.relative}
+</div>
 
-        <div class="info-card">
-          <span>Mood</span><br>
-          ${data.mood}
-        </div>
+<div class="info-card">
+<span>Mood</span><br>
+${data.mood}
+</div>
 
-      </div>
+</div>
 
-      <div class="section">
-        <h2>🎼 Scale Notes</h2>
+<div class="section">
+<h2>🎼 Scale Notes</h2>
 
-        <div class="grid">
-          ${createCards(data.notes)}
-        </div>
-      </div>
+<div class="grid">
+${createCards(data.notes)}
+</div>
+</div>
 
-      <div class="section">
-        <h2>🎹 Chords in Scale</h2>
+<div class="section">
+<h2>🎹 Chords in Scale</h2>
 
-        <div class="grid">
-          ${createCards(data.chords)}
-        </div>
-      </div>
+<div class="grid">
+${createCards(data.chords)}
+</div>
+</div>
 
-      <div class="section">
-        <h2>🔥 Pentatonic Scale</h2>
+<div class="section">
+<h2>🔥 Pentatonic Scale</h2>
 
-        <div class="grid">
-          ${createCards(data.pentatonic)}
-        </div>
-      </div>
+<div class="grid">
+${createCards(data.pentatonic)}
+</div>
+</div>
 
-    `;
+`;
 
-  } else {
+}else{
 
-    scaleType.innerHTML = "❌ Not Found";
+scaleType.innerHTML="❌ NOT FOUND";
 
-    result.innerHTML = `
-      <div class="error">
-        Scale not found.<br><br>
+result.innerHTML=`
+<div class="error">
 
-        Try:<br>
-        E major<br>
-        Bb minor<br>
-        F# major<br>
-        Ab major
-      </div>
-    `;
-  }
+Scale not found.<br><br>
+
+Try:<br>
+A# major<br>
+Gb minor<br>
+Cb major<br>
+Fb minor
+
+</div>
+`;
+}
 }
 
 function randomScale(){
 
-  const keys = Object.keys(scales);
+const keys=Object.keys(scales);
 
-  const random =
-    keys[Math.floor(Math.random()*keys.length)];
+const random=
+keys[Math.floor(Math.random()*keys.length)];
 
-  document.getElementById("scaleInput").value =
-    random.replace("major"," major")
-          .replace("minor"," minor");
+document.getElementById("scaleInput").value=
+random.replace("major"," major")
+      .replace("minor"," minor");
 
-  showScale();
+showScale();
 }
 
 </script>
