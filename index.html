@@ -681,12 +681,103 @@ mood:"Atmospheric"
 }
 
 };
+  const chromatic = [
+"C","C#","D","D#","E","F",
+"F#","G","G#","A","A#","B"
+];
 
-function createCards(arr){
-  return arr.map(item=>`
-  <div class="card">${item}</div>
-  `).join("");
+const flatToSharp = {
+"Db":"C#",
+"Eb":"D#",
+"Gb":"F#",
+"Ab":"G#",
+"Bb":"A#",
+"Cb":"B",
+"Fb":"E"
+};
+
+function normalizeNote(note){
+  return flatToSharp[note] || note;
 }
+
+function getChordNotes(chord){
+
+  let root = chord;
+
+  if(chord.includes("dim")){
+    root = chord.replace("dim","");
+  } else if(
+    chord.endsWith("m") &&
+    !chord.includes("dim")
+  ){
+    root = chord.slice(0,-1);
+  }
+
+  let type = "major";
+
+  if(chord.includes("dim"))
+    type = "dim";
+  else if(
+    chord.endsWith("m") &&
+    !chord.includes("dim")
+  )
+    type = "minor";
+
+  const rootSharp = normalizeNote(root);
+
+  const rootIndex =
+    chromatic.indexOf(rootSharp);
+
+  if(rootIndex === -1)
+    return ["Unknown"];
+
+  let intervals;
+
+  if(type === "major"){
+    intervals = [0,4,7];
+  }
+  else if(type === "minor"){
+    intervals = [0,3,7];
+  }
+  else{
+    intervals = [0,3,6];
+  }
+
+  return intervals.map(i =>
+    chromatic[(rootIndex+i)%12]
+  );
+}
+
+function showChordInfo(chord){
+
+  const notes =
+    getChordNotes(chord).join(" - ");
+
+  alert(
+    `${chord}
+
+Notes:
+${notes}`
+  );
+  }
+  function createCards(arr){
+
+  return arr.map(item => {
+
+    const notes =
+      getChordNotes(item).join(" - ");
+
+    return `
+      <div class="card">
+        <strong>${item}</strong>
+        <br><br>
+        <small>${notes}</small>
+      </div>
+    `;
+
+  }).join("");
+
+  }
 
 function showScale(){
 
